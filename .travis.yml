@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true vbrake/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "sa-east-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-sa-east-1-104636601046"
+  bucket_path: "docker"
+  on:
+    branch: master
+  access_key_id: $access_key_id
+  secret_access_key: $secret_access_key
